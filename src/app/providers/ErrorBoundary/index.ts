@@ -1,39 +1,4 @@
-import React, { ErrorInfo, ReactNode } from 'react';
-import { types } from 'sass';
-import Error = types.Error;
+import { BugButton } from './ui/BugButton';
+import ErrorBoundary from './ui/ErrorBoudary';
 
-interface ErrorBoundaryProps {
-    children: ReactNode
-}
-
-interface ErrorBoundaryState {
-    hasError: boolean;
-}
-
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-    constructor(props: ErrorBoundaryProps) {
-        super(props);
-        this.state = { hasError: false };
-    }
-
-    static getDerivedStateFromError(error: Error) {
-        // Update state so the next render will show the fallback UI.
-        return { hasError: true };
-    }
-
-    componentDidCatch(error: Error, info: ErrorInfo) {
-        // You can also log the error to an error reporting service
-        console.log(error, info);
-    }
-
-    render() {
-        const { hasError } = this.state
-        const { children } = this.props
-        if (hasError) {
-            // You can render any custom fallback UI
-            return <PageError />
-        }
-
-        return children;
-    }
-}
+export { ErrorBoundary, BugButton };
